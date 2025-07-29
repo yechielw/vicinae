@@ -3,9 +3,15 @@ include(ExtensionApi)
 
 set(EXT_MGR_SRC_DIR "${CMAKE_SOURCE_DIR}/extension-manager")
 set(EXT_MGR_OUT "${CMAKE_SOURCE_DIR}/vicinae/assets/extension-runtime.js")
+set(EXT_PROTO_PATH "${CMAKE_SOURCE_DIR}/proto/extensions")
+set(EXT_PROTO_OUT "${EXT_MGR_SRC_DIR}/src/proto")
 
 file(GLOB_RECURSE EXT_MGR_TS_FILES
     "${EXT_MGR_SRC_DIR}/src/*.ts"
+)
+
+file(GLOB_RECURSE EXT_PROTO_FILES
+	"${EXT_PROTO_PATH}/*.proto"
 )
 
 list(APPEND EXT_MGR_TS_FILES
@@ -13,15 +19,26 @@ list(APPEND EXT_MGR_TS_FILES
     "${EXT_MGR_SRC_DIR}/package.json"
 )
 
+set(FILTERED_TS_FILES "")
+
+foreach(file ${EXT_MGR_TS_FILES})
+    if(NOT file MATCHES "/proto/")
+		list(APPEND FILTERED_TS_FILES "${file}")
+    endif()
+endforeach()
+
+file(MAKE_DIRECTORY ${EXT_PROTO_OUT})
+
 add_custom_command(
     OUTPUT ${EXT_MGR_OUT}
     COMMAND npm install
+	COMMAND protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --proto_path=${EXT_PROTO_PATH} ${EXT_PROTO_FILES} --ts_proto_out ${EXT_PROTO_OUT}
     COMMAND npm run build
     COMMAND ${CMAKE_COMMAND} -E copy
             ${EXT_MGR_SRC_DIR}/dist/runtime.js
             ${EXT_MGR_OUT}
     WORKING_DIRECTORY ${EXT_MGR_SRC_DIR}
-	DEPENDS ${EXT_MGR_TS_FILES} ${API_OUT}
+	DEPENDS ${FILTERED_TS_FILES} ${API_OUT}
     COMMENT "Building extension manager JavaScript bundle"
 )
 
