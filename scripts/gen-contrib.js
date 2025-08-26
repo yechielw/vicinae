@@ -2,7 +2,7 @@ const { writeFileSync, mkdirSync } = require('fs');
 const { join } = require('path');
 const { QrcBuilder } = require('./qrc-builder');
 
-const REPO = 'vicinaehq/vicinae';
+const REPO = 'yechielw/vicinae';
 
 const fetchContributors = async () => {
 	const res = await fetch(`https://api.github.com/repos/${REPO}/contributors`);

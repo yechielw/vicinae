@@ -123,7 +123,7 @@ class Vicinae {
 						this.writeMessage({ extensionEvent: { sessionId, event }});
 					}
 				} catch (error) {
-					const crash = extension.CrashEventData.create({ text: `The extension manager process received a malformed request.\nThis most likely indicates a problem with Vicinae, not the extension.\nPlease file a bug report: https://github.com/vicinaehq/vicinae/issues/new` });
+					const crash = extension.CrashEventData.create({ text: `The extension manager process received a malformed request.\nThis most likely indicates a problem with Vicinae, not the extension.\nPlease file a bug report: https://github.com/yechielw/vicinae/issues/new` });
 					const event = ipc.QualifiedExtensionEvent.create({ sessionId, event: { id: randomUUID(), crash } });
 
 					this.writeMessage({ extensionEvent: event });

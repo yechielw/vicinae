@@ -9,7 +9,7 @@ Now you can start making changes to this command source file and see it update l
 
 If you are online, you should be able to see the Vicinae logo below:
 
-![](https://github.com/vicinaehq/vicinae/raw/main/.github/assets/vicinae-banner.png)
+![](https://github.com/yechielw/vicinae/raw/main/.github/assets/vicinae-banner.png)
 `;
 
 export default function SimpleDetail() {

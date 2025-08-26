@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/vicinaehq/vicinae/refs/heads/main/extra/schemas/extension.json",
+  "$id": "https://raw.githubusercontent.com/yechielw/vicinae/refs/heads/main/extra/schemas/extension.json",
   "type": "object",
   "$defs": {
     "keywords": {

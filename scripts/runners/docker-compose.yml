@@ -4,7 +4,7 @@ services:
         context: cpp
         dockerfile: Dockerfile
     environment:
-      - REPO_URL=https://github.com/vicinaehq
+      - REPO_URL=https://github.com/yechielw
       - RUNNER_TOKEN=${RUNNER_TOKEN}
       - RUNNER_NAME=docker-runner-local
       - LABELS=linux,docker,cpp,nodejs
