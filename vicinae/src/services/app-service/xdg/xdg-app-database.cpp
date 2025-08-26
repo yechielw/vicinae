@@ -322,6 +322,7 @@ bool XdgAppDatabase::launch(const Application &app, const std::vector<QString> &
 
   process.setProgram(program);
   process.setArguments(argv);
+  process.setProcessEnvironment(QProcessEnvironment::systemEnvironment());
   process.setStandardOutputFile(QProcess::nullDevice());
   process.setStandardErrorFile(QProcess::nullDevice());
 
